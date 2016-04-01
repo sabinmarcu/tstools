@@ -1,0 +1,10 @@
+{
+  "ambientDependencies": {
+    "core-decorators": "registry:dt/core-decorators#0.10.0+20160316155526",
+    "node": "registry:dt/node#4.0.0+20160319033040"
+  },
+  "dependencies": {
+    "debug": "registry:npm/debug#2.0.0+20160211003958",
+    "lodash": "registry:npm/lodash#4.0.0+20160305082308"
+  }
+}

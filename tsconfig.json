@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "preserveConstEnums": true,
+        "target": "es6",
+        "sourceMap": true,
+        "removeComments": true,
+        "experimentalDecorators": true
+    },
+    "compileOnSave": true,
+    "exclude": ["node_modules", "build", "typings/browser", "typings/browser.d.ts"]
+}
