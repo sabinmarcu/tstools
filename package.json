@@ -1,7 +1,7 @@
 {
   "name": "tstools",
   "author": "Sabin Marcu <sabinmarcu@gmail.com>",
-  "version": "0.1.0-0",
+  "version": "0.1.0",
   "dependencies": {
     "check-types": "^6.0.0",
     "debug": "^2.2.0",
