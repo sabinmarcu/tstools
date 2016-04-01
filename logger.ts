@@ -121,3 +121,24 @@ export class LoggerStub {
     error(...args: Array<any>): void { console.log("Error Stub"); return; }
     info(...args: Array<any>): void { console.log("Info Stub"); return; }
 }
+
+export class Logger {
+
+    static get log(): Function { return generate("log", getName(this), this["__ns"] || 'default'); }
+    static get warn(): Function { return generate("warn", getName(this), this["__ns"] || 'default'); }
+    static get info(): Function { return generate("info", getName(this), this["__ns"] || 'default'); }
+    static get error(): Function { return generate("error", getName(this), this["__ns"] || 'default'); }
+
+    get log(): Function { return generate("log", getName(this.constructor), this.constructor["__ns"] || 'default'); }
+    get warn(): Function { return generate("warn", getName(this.constructor), this.constructor["__ns"] || 'default'); }
+    get info(): Function { return generate("info", getName(this.constructor), this.constructor["__ns"] || 'default'); }
+    get error(): Function { return generate("error", getName(this.constructor), this.constructor["__ns"] || 'default'); }
+
+}
+
+export function Namespace(ns: string = 'app'): Function {
+    "use strict";
+    return function(constructor): void {
+        constructor.__ns = ns;
+    }
+}
