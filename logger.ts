@@ -16,11 +16,15 @@ function generate(_type: string, path: string, namespace: string): Function {
             name: string = this.constructor.name || this.name || "",
             r: any = new RegExp(`${name}\.([a-zA-Z]*)`, "g");
         s = s.substr(s.indexOf(name) + name.length); r = r.exec(s);
-        if (r && r[1] !== "") {
-            if (typeof(this.uuid) !== "undefined") {
-                str = `${str}!${this.uuid.substr(0, 6)}`;
+        if (typeof(this.__uuid) !== "undefined") {
+            str = `${str}!${this.__uuid.substr(0, 6)}`;
+        }
+        if (r && typeof(this.__uuid) !== "undefined") {
+            if (r[1] !== "") {
+                str = `${str}#${r[1]}`;
+            } else {
+                str = `${str}#constructor`;
             }
-            str = `${str}#${r[1]}`;
         }
         if (!debuggers.has(str)) {
             debuggers.set(str, debug(str));
@@ -134,11 +138,4 @@ export class Logger {
     get info(): Function { return generate("info", getName(this.constructor), this.constructor["__ns"] || 'default'); }
     get error(): Function { return generate("error", getName(this.constructor), this.constructor["__ns"] || 'default'); }
 
-}
-
-export function Namespace(ns: string = 'app'): Function {
-    "use strict";
-    return function(constructor): void {
-        constructor.__ns = ns;
-    }
 }
